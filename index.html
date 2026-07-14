@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>💸 SplitEase</h1>
+            <nav class="tabs">
+                <button class="tab-btn active" data-target="dashboard-view">Dashboard</button>
+                <button class="tab-btn" data-target="expenses-view">Expenses</button>
+                <button class="tab-btn" data-target="members-view">Members</button>
+            </nav>
+        </header>
+
+        <main class="app-main">
+            <!-- Dashboard View -->
+            <section id="dashboard-view" class="view-section active">
+                <div class="card" style="margin-bottom: 2rem; background-color: #eff6ff; border-color: #bfdbfe;">
+                    <h2 style="font-size: 1.1rem; color: #1e40af; margin-bottom: 0.75rem;">🚀 How to use SplitEase:</h2>
+                    <ol style="margin-left: 1.5rem; color: #1e3a8a; font-size: 0.95rem; line-height: 1.6;">
+                        <li>Go to the <strong>Members</strong> tab to add people to your group.</li>
+                        <li>Go to the <strong>Expenses</strong> tab to log new spending.</li>
+                        <li>Check this <strong>Dashboard</strong> to see who owes what and how to settle up!</li>
+                    </ol>
+                </div>
+
+                <div class="summary-cards">
+                    <div class="card total-card">
+                        <h3>Total Spent</h3>
+                        <p id="total-spent-amount">$0.00</p>
+                    </div>
+                </div>
+
+                <div class="balances-section">
+                    <h2>Balances</h2>
+                    <div id="balances-list" class="list-container">
+                        <p class="empty-state">Add members and expenses to see balances.</p>
+                    </div>
+                </div>
+
+                <div class="settlements-section">
+                    <h2>How to Settle Up</h2>
+                    <div id="settlements-list" class="list-container">
+                        <p class="empty-state">No settlements needed yet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Expenses View -->
+            <section id="expenses-view" class="view-section">
+                <div class="split-layout">
+                    <div class="form-container card">
+                        <h2>Add Expense</h2>
+                        <form id="expense-form">
+                            <div class="form-group">
+                                <label for="expense-title">Description</label>
+                                <input type="text" id="expense-title" required placeholder="e.g. Dinner at Mario's">
+                            </div>
+                            <div class="form-group">
+                                <label for="expense-amount">Total Amount ($)</label>
+                                <input type="number" id="expense-amount" required min="0.01" step="0.01" placeholder="0.00">
+                            </div>
+                            <div class="form-group">
+                                <label for="expense-payer">Who Paid?</label>
+                                <select id="expense-payer" required>
+                                    <option value="" disabled selected>Select a member</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Split Among (Default: Everyone)</label>
+                                <div id="expense-split-options" class="checkbox-group">
+                                    <!-- Checkboxes will be injected here -->
+                                </div>
+                            </div>
+                            <button type="submit" class="btn primary-btn">Add Expense</button>
+                        </form>
+                    </div>
+                    <div class="list-container card">
+                        <h2>Expense History</h2>
+                        <div id="expenses-list">
+                            <p class="empty-state">No expenses recorded yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Members View -->
+            <section id="members-view" class="view-section">
+                <div class="split-layout">
+                    <div class="form-container card">
+                        <h2>Add Member</h2>
+                        <form id="member-form">
+                            <div class="form-group">
+                                <label for="member-name">Name</label>
+                                <input type="text" id="member-name" required placeholder="Enter name">
+                            </div>
+                            <button type="submit" class="btn primary-btn">Add Member</button>
+                        </form>
+                    </div>
+                    <div class="list-container card">
+                        <h2>Group Members</h2>
+                        <ul id="members-list" class="member-list">
+                            <p class="empty-state">No members added yet.</p>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
